@@ -12,7 +12,7 @@ public class BeatLogicScript : MonoBehaviour
 	public float beat2Time;
 	public float beat3Time;
 	public float beat4Time;
-	private float beatEndTime;
+	//private float beatEndTime;
 	public float jumpBeatTime;
 	
 	public int curBeat;
@@ -27,7 +27,7 @@ public class BeatLogicScript : MonoBehaviour
         audio = GetComponents<AudioSource>();
 		curTimer = beat1Time;
 		curJumpTimer = jumpBeatTime;
-		beatEndTime = jumpBeatTime - (beat1Time + beat2Time + beat3Time + beat4Time) + (beat1Time / 2); 
+		//beatEndTime = jumpBeatTime - (beat1Time + beat2Time + beat3Time + beat4Time) + (beat1Time / 2); 
 		NeedsToJump = true;
 		curBeat = 1;
     }
@@ -47,7 +47,7 @@ public class BeatLogicScript : MonoBehaviour
 			}
 			
 			// Increment the beat we are playing currently
-			curBeat = (curBeat + 1) % 5;
+			curBeat = (curBeat + 1) % 4;
 			switch(curBeat)
 			{
 				case 1:
@@ -66,7 +66,7 @@ public class BeatLogicScript : MonoBehaviour
 					curTimer = beat4Time;
 					break;
 				case 5:
-					curTimer = beatEndTime;
+					//curTimer = beatEndTime;
 					break;
 				default:
 					break;
