@@ -24,7 +24,7 @@ public class BeatLogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        audio = GetComponents<AudioSource>();
+        audio = GetComponent<AudioSource>();
 		curTimer = beat1Time;
 		curJumpTimer = jumpBeatTime;
 		//beatEndTime = jumpBeatTime - (beat1Time + beat2Time + beat3Time + beat4Time) + (beat1Time / 2); 
@@ -35,15 +35,15 @@ public class BeatLogicScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        curTimer -= Time.deltatime;
-		curJumpTimer -= Time.deltatime;
+        curTimer -= Time.deltaTime;
+		curJumpTimer -= Time.deltaTime;
 		
 		if(curTimer <= 0)
 		{
 			// Play normal beat, get ready to play next one.
 			if(curBeat < 5)
 			{
-				AudioClip.PlayOneShot (normBeatSound, 1.0f);
+                audio.PlayOneShot (normBeatSound, 1.0f);
 			}
 			
 			// Increment the beat we are playing currently
@@ -76,7 +76,7 @@ public class BeatLogicScript : MonoBehaviour
 		if(curJumpTimer <= 0 && NeedsToJump == true)
 		{
 			// Play jump beat, set the need to play jump beat to false;
-			AudioClip.PlayOneShot (jumpBeatSound, 1.0f);
+		    audio.PlayOneShot (jumpBeatSound, 1.0f);
 			
 			//curJumpTimer = jumpBeatTime;
 			NeedsToJump = false;
