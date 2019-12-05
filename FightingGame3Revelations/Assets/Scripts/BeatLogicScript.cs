@@ -96,5 +96,10 @@ public class BeatLogicScript : MonoBehaviour
 		// What the jump beat timer gets reset to each sequence
 		return jumpBeatTime;
 	}
+
+    public float getSequenceTime()
+    {
+        return beat1Time + beat2Time + beat3Time + beat4Time;
+    }
 	
 }
