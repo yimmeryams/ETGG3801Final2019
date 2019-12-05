@@ -15,11 +15,11 @@ public class BeatLogicScript : MonoBehaviour
 	//private float beatEndTime;
 	public float jumpBeatTime;
 	
-	public int curBeat;
-	public bool NeedsToJump;
+	private int curBeat;
+	private bool NeedsToJump;
 	
-	public float curTimer;
-	public float curJumpTimer;
+	private float curTimer;
+	private float curJumpTimer;
 	
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,7 @@ public class BeatLogicScript : MonoBehaviour
 			}
 			
 			// Increment the beat we are playing currently
-			curBeat = (curBeat + 1) % 4;
+			curBeat = (curBeat + 1) % 5;
 			switch(curBeat)
 			{
 				case 1:
