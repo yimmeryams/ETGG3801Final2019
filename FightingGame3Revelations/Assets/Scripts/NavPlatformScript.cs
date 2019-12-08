@@ -61,36 +61,38 @@ public class NavPlatformScript : MonoBehaviour
         // rotate platform (if one is given)
         if (spinRate != Vector3.zero)
         {
-            Quaternion newRotation = Quaternion.Euler(transform.localRotation.x + spinRate.x * Time.deltaTime,
-                                                      transform.localRotation.y + spinRate.y * Time.deltaTime,
-                                                      transform.localRotation.z + spinRate.z * Time.deltaTime);
-
-            transform.localRotation = newRotation;
+            transform.Rotate(transform.right, spinRate.x * platformSpeed * Time.deltaTime);
+            transform.Rotate(transform.up, spinRate.y * platformSpeed * Time.deltaTime);
+            transform.Rotate(transform.forward, spinRate.z * platformSpeed * Time.deltaTime);
         }
 
-        float step = platformSpeed * Time.deltaTime;
-
-        transform.position = Vector3.MoveTowards(transform.position, path[targetPoint], step);
-
-        if (Vector3.Distance(transform.position, path[targetPoint]) <= 0.025)
+        // navigate platform path
+        if (path.Length > 0)
         {
-            if (!cyclicalPath)
-            {
-                if (targetPoint == 0)
-                {
-                    platformDirection = 1;
-                }
-                else if (targetPoint == path.Length - 1)
-                {
-                    platformDirection = -1;
-                }
+            float step = platformSpeed * Time.deltaTime;
 
-                lastPoint = targetPoint;
-                targetPoint += platformDirection;
-            }
-            else
+            transform.position = Vector3.MoveTowards(transform.position, path[targetPoint], step);
+
+            if (Vector3.Distance(transform.position, path[targetPoint]) <= 0.025)
             {
-                targetPoint = Mathf.Abs(targetPoint + platformDirection) % path.Length;
+                if (!cyclicalPath)
+                {
+                    if (targetPoint == 0)
+                    {
+                        platformDirection = 1;
+                    }
+                    else if (targetPoint == path.Length - 1)
+                    {
+                        platformDirection = -1;
+                    }
+
+                    lastPoint = targetPoint;
+                    targetPoint += platformDirection;
+                }
+                else
+                {
+                    targetPoint = Mathf.Abs(targetPoint + platformDirection) % path.Length;
+                }
             }
         }
     }
