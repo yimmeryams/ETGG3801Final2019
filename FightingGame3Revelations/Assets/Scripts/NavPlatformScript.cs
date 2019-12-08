@@ -2,35 +2,77 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlatformController : MonoBehaviour
+public class NavPlatformScript : MonoBehaviour
 {
     [SerializeField]
     private bool cyclicalPath = false;      // true: platform will navigate through the list and cycle back (ex: 1->2->3->1->etc.)
-                                            // else: platform will navigate to the next or previous element in list (ex: 1->2->3->2->1->etc.)
+                                            // false: platform will navigate to the next or previous element in list (ex: 1->2->3->2->1->etc.)
+    [SerializeField]
+    private Vector3 spinRate = Vector3.zero;    // specifies any rotation of the platform (Vector3.zero signifies no rotation)
     [SerializeField]
     private Vector3[] path;                 // list of Vector3 positions to navigate to
     [SerializeField]
     private float platformSpeed = 0.0f;     // speed of platform when navigating
+    [SerializeField]
+    private int startingPoint = 0;          // index of Vector3 position platform will start from (becomes lastPoint)
+    [SerializeField]
+    private int platformDirection = 1;      // 1 if moving right through the list (start -> end), -1 if moving left through the list (end -> start)
 
     private int lastPoint = 0;              // index of Vector3 position platform was last at
     private int targetPoint = 1;            // index of Vector3 position platform is currently navigating to
-    private int platformDirection = 1;      // 1 if moving right through the list, -1 if moving left through the list
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        lastPoint = startingPoint;
+
+        // linear
+        if (!cyclicalPath)
+        {
+            // last point
+            if (lastPoint == path.Length - 1)
+            {
+                targetPoint = lastPoint - 1;
+                platformDirection = -1;
+            }
+            // first point
+            else if (lastPoint == 0)
+            {
+                targetPoint = 1;
+                platformDirection = 1;
+            }
+            // in the middle
+            else
+            {
+                targetPoint = lastPoint + platformDirection;
+            }
+        }
+        // cyclical
+        else
+        {
+            targetPoint = (lastPoint + platformDirection) % path.Length;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        // rotate platform (if one is given)
+        if (spinRate != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.Euler(transform.localRotation.x + spinRate.x * Time.deltaTime,
+                                                      transform.localRotation.y + spinRate.y * Time.deltaTime,
+                                                      transform.localRotation.z + spinRate.z * Time.deltaTime);
+
+            transform.localRotation = newRotation;
+        }
+
         float step = platformSpeed * Time.deltaTime;
 
         transform.position = Vector3.MoveTowards(transform.position, path[targetPoint], step);
 
-        if (Vector3.Distance(transform.position, path[targetPoint]) <= 0.05)
+        if (Vector3.Distance(transform.position, path[targetPoint]) <= 0.025)
         {
             if (!cyclicalPath)
             {
@@ -53,7 +95,7 @@ public class PlatformController : MonoBehaviour
         }
     }
 
-    void OnDrawGizmosSelected()
+    void OnDrawGizmos()
     {
         // draw wire spheres at path positions
         Gizmos.color = Color.red;
