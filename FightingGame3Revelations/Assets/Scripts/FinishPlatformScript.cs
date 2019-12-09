@@ -33,6 +33,8 @@ public class FinishPlatformScript : MonoBehaviour
                 flag.transform.position = Vector3.MoveTowards(flag.transform.position, finalFlagPos, flagSpeed * Time.deltaTime);
             }
         }
+
+        bool test = IsPlayerFinished();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,5 +43,11 @@ public class FinishPlatformScript : MonoBehaviour
         {
             playerFinished = true;
         }
+    }
+
+    // returns playerFinished; true if player has reached finish platform, false otherwise
+    public bool IsPlayerFinished()
+    {
+        return playerFinished;
     }
 }
