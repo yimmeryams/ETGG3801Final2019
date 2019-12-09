@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
     }
     public void start()
     {
-        SceneManager.LoadScene("Ingame");
+        SceneManager.LoadScene("Level 1");
     }
     public void stop()
     {
