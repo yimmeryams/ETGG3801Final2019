@@ -164,8 +164,10 @@ public class PlayerScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        rb.AddForce(new Vector3(0, -10000000 * Time.deltaTime, 0));
         if (playerControl)
         {
+            
             if (Input.GetAxis("Jump") != 0)
             {
                 if (canJump & (jump_time < jump_max))
@@ -189,19 +191,19 @@ public class PlayerScript : MonoBehaviour
                         }
 
 
-                        rb.AddForce(new Vector3(0, jump_force  +  jump_force_mult * Time.deltaTime * jump_force, 0));
+                        rb.AddForce(new Vector3(0, jump_force  +  jump_force_mult  * jump_force, 0));
                         jump_time += Time.deltaTime;
                     }
                     else
                     {
-                        jump_time += Time.deltaTime;
-                        if (jump_time < jump_max)
+                        //jump_time += Time.deltaTime;
+                        //if (jump_time < jump_max)
                         {
-                            rb.AddForce(new Vector3(0,  jump_force_mult * Time.deltaTime * jump_force, 0));
+                            //rb.AddForce(new Vector3(0,  jump_force_mult * Time.deltaTime * jump_force, 0));
                         }
-                        else
+                        //else
                         {
-                            rb.AddForce(new Vector3(0, jump_force_mult * (Time.deltaTime - (jump_time - jump_max)) * jump_force, 0));
+                            //rb.AddForce(new Vector3(0, jump_force_mult * (Time.deltaTime - (jump_time - jump_max)) * jump_force, 0));
                         }
                     }
                 }
