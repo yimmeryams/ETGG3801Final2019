@@ -12,9 +12,7 @@ public class FinishPlatformScript : MonoBehaviour
     private float flagMoveY = 0.0f;         // distance for flag to move upwards when triggered
 
     private Vector3 finalFlagPos = Vector3.zero;
-
-    [HideInInspector]
-    public bool playerFinished = false;     // true if player made it to the finish platform; false otherwise
+    private bool playerFinished = false;     // true if player made it to the finish platform; false otherwise
 
 
     // Start is called before the first frame update
@@ -42,6 +40,9 @@ public class FinishPlatformScript : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             playerFinished = true;
+
+            other.GetComponent<AudioSource>().enabled = false;
+            GetComponent<AudioSource>().PlayDelayed(0.5f);
         }
     }
 

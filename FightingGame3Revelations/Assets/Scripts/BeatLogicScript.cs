@@ -30,6 +30,8 @@ public class BeatLogicScript : MonoBehaviour
 		//beatEndTime = jumpBeatTime - (beat1Time + beat2Time + beat3Time + beat4Time) + (beat1Time / 2); 
 		NeedsToJump = true;
 		curBeat = 1;
+
+        audio.enabled = true;
     }
 
     // Update is called once per frame
