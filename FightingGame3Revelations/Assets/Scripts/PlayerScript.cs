@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public float move_speed = 50.0f;
     public float look_speed = 100.0f;
     public float deathHeight = -150.0f;
+    public float beatSensitivity = 0.85f;
     
     public int health = 6;
     [HideInInspector]
@@ -22,8 +23,10 @@ public class PlayerScript : MonoBehaviour
 
     private float jump_time = 0.0f;
     public float jump_max = 2.0f;
+    private float jump_max_orig;
     public int jump_force = 40000;
     public float jump_force_mult = 50.0f;
+    private float jump_force_mult_orig;
    
     private float current_cam_dist;
 
@@ -32,7 +35,10 @@ public class PlayerScript : MonoBehaviour
     
     public float camera_vertical_mult = 0.1f;
     public float camera_launcher_mult = 50.0f;
-    
+
+    private float jumpy;
+    private float jumpyMax;
+
     private Rigidbody rb;
     private Camera cam;
     private GameObject skull;
@@ -63,6 +69,8 @@ public class PlayerScript : MonoBehaviour
         anim = temp.GetComponent<Animator>();
         //coinText = FindObjectOfType<Canvas>().transform.GetChild(0).GetComponent<Text>();
         currentHealth = health;
+        jump_force_mult_orig = jump_force_mult;
+        jump_max_orig = jump_max;
     }
 
     // Update is called once per frame
@@ -162,9 +170,26 @@ public class PlayerScript : MonoBehaviour
             {
                 if (canJump & (jump_time < jump_max))
                 {
+                    
                     if (jump_time == 0)
                     {
-                        rb.AddForce(new Vector3(0, jump_force + jump_force_mult * Time.deltaTime * jump_force, 0));
+                        jumpy = Mathf.Abs(this.GetComponent<BeatLogicScript>().getJumpTime());
+                        jumpyMax = this.GetComponent<BeatLogicScript>().getMaxJumpTime();
+                        //print(jumpy);
+                        print(1 - jumpy / jumpyMax);
+                        jump_force_mult = (1 - jumpy / jumpyMax) * jump_force_mult_orig * 4;
+                        if ((1 - jumpy / jumpyMax) < beatSensitivity)
+                        {
+                            jump_force_mult = jump_force_mult / 20.0f;
+                            jump_max = jump_max_orig / 5.0f;
+                        }
+                        else
+                        {
+                            jump_max = jump_max_orig;
+                        }
+
+
+                        rb.AddForce(new Vector3(0, jump_force  +  jump_force_mult * Time.deltaTime * jump_force, 0));
                         jump_time += Time.deltaTime;
                     }
                     else
@@ -172,7 +197,7 @@ public class PlayerScript : MonoBehaviour
                         jump_time += Time.deltaTime;
                         if (jump_time < jump_max)
                         {
-                            rb.AddForce(new Vector3(0, jump_force_mult * Time.deltaTime * jump_force, 0));
+                            rb.AddForce(new Vector3(0,  jump_force_mult * Time.deltaTime * jump_force, 0));
                         }
                         else
                         {
