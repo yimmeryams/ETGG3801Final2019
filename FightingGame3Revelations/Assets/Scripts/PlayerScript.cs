@@ -220,11 +220,14 @@ public class PlayerScript : MonoBehaviour
             jump_time = 0.0f;
             canJump = true;
         }
-        if (collision.gameObject.tag == "Money")
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground")
         {
-            coinCount += 1;
-            MoneyUpdate();
-            Destroy(collision.gameObject);
+            jump_time = 0.0f;
+            canJump = true;
         }
     }
 
