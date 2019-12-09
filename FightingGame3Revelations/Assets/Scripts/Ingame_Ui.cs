@@ -10,7 +10,7 @@ public class Ingame_Ui : MonoBehaviour
     private bool no_error = true;
     private float minutes = 30;
     private float seconds = 59.9999f;
-    public int diamond_rate = 90;
+    public int diamond_rate = 75;
     // Start is called before the first frame update
     void Start()
     {
