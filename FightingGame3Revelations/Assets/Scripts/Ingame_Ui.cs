@@ -10,6 +10,7 @@ public class Ingame_Ui : MonoBehaviour
     private bool no_error = true;
     private float minutes = 30;
     private float seconds = 59.9999f;
+    public int diamond_rate = 90;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +32,7 @@ public class Ingame_Ui : MonoBehaviour
         Text time = GameObject.Find("Timer").GetComponent<Text>();
         time.text = minutes + ":" + seconds;
         GameObject diamond = GameObject.Find("Diamond");
-        Vector3 d = new Vector3(100,0,0);
+        Vector3 d = new Vector3(diamond_rate,0,0);
         Vector3 start = new Vector3(249, 0.0f, 0.0f);
         diamond.transform.position += (d*Time.deltaTime);
         if (diamond.transform.position.x >= 580.0f)
