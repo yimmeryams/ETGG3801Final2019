@@ -53,7 +53,7 @@ public class Ingame_Ui : MonoBehaviour
         // calculating how far to move the Diamond  ~JDP
         float percentage = Time.deltaTime / beatDuration;
         magicDiamondNumber = percentage * barSize;
-        magicDiamondNumber = 0.96f * magicDiamondNumber;
+        magicDiamondNumber = 0.97f * magicDiamondNumber;
         diamond.transform.position = new Vector3(diamond.transform.position.x + magicDiamondNumber, diamond.transform.position.y, diamond.transform.position.z);
         if (diamond.transform.position.x >= barRight)
         {
