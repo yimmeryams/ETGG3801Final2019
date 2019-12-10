@@ -18,12 +18,16 @@ public class Ingame_Ui : MonoBehaviour
     private float barSize;
     private float magicDiamondNumber;
     public float beatDuration = 2.0f;   // could grab this from Player->BeatLogicScript but nah I'm too lazy ~JDP
+    public int offset = 30;
+    private GameObject diamond;
     // Start is called before the first frame update
     void Start()
     {
+         diamond = GameObject.Find("Diamond");
         // saves starting position of diamond, place it on the orange circle ~JDP
-        diamondStartX = GetComponent<Canvas>().transform.GetChild(3).transform.position.x;
-        diamondStartY = GetComponent<Canvas>().transform.GetChild(3).transform.position.y;
+        diamondStartX = diamond.transform.position.x;
+        diamondStartY = diamond.transform.position.y;
+        diamond.transform.position = new Vector3(diamond.transform.position.x - offset, diamondStartY, diamond.transform.position.z);
         // saves the width, left bound pos, and right bound pos of the beat bar ~JDP
         barSize = GetComponent<Canvas>().transform.GetChild(2).transform.GetComponent<RectTransform>().sizeDelta.x;
         barLeft = GetComponent<Canvas>().transform.GetChild(2).transform.position.x - barSize / 2.0f;
@@ -45,7 +49,7 @@ public class Ingame_Ui : MonoBehaviour
         }
         Text time = GameObject.Find("Timer").GetComponent<Text>();
         time.text = minutes + ":" + seconds;
-        GameObject diamond = GameObject.Find("Diamond");
+        //GameObject diamond = GameObject.Find("Diamond");
 
         //Vector3 d = new Vector3(diamond_rate,0,0);
         //Vector3 start = new Vector3(249, 0.0f, 0.0f);
@@ -94,7 +98,7 @@ public class Ingame_Ui : MonoBehaviour
     }
     public void jump()
     {
-        GameObject diamond = GameObject.Find("Diamond");
+        //GameObject diamond = GameObject.Find("Diamond");
         diamond.transform.position = new Vector3(diamondStartX, diamondStartY, diamond.transform.position.z);
     }
 }

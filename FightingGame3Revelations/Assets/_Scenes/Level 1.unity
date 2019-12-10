@@ -4105,7 +4105,12 @@ PrefabInstance:
     - target: {fileID: 1989397886729210762, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
       propertyPath: beatDuration
-      value: 1.75
+      value: 1.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989397886729210762, guid: 2806f38bdbb070b40a4532978630d3d1,
+        type: 3}
+      propertyPath: offset
+      value: -43
       objectReference: {fileID: 0}
     - target: {fileID: 1989397885459853627, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
