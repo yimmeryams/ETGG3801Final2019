@@ -17,7 +17,7 @@ public class Ingame_Ui : MonoBehaviour
     private float barRight;
     private float barSize;
     private float magicDiamondNumber;
-    public float beatDuration = 1.75f;   // could grab this from Player->BeatLogicScript but nah I'm too lazy ~JDP
+    public float beatDuration = 2.0f;   // could grab this from Player->BeatLogicScript but nah I'm too lazy ~JDP
     // Start is called before the first frame update
     void Start()
     {
@@ -53,7 +53,7 @@ public class Ingame_Ui : MonoBehaviour
         // calculating how far to move the Diamond  ~JDP
         float percentage = Time.deltaTime / beatDuration;
         magicDiamondNumber = percentage * barSize;
-        magicDiamondNumber = 0.98f * magicDiamondNumber;
+        //magicDiamondNumber = 0.9725f * magicDiamondNumber;
         diamond.transform.position = new Vector3(diamond.transform.position.x + magicDiamondNumber, diamond.transform.position.y, diamond.transform.position.z);
         if (diamond.transform.position.x >= barRight)
         {
@@ -91,5 +91,10 @@ public class Ingame_Ui : MonoBehaviour
     public void stop()
     {
         Application.Quit();
+    }
+    public void jump()
+    {
+        GameObject diamond = GameObject.Find("Diamond");
+        diamond.transform.position = new Vector3(diamondStartX, diamondStartY, diamond.transform.position.z);
     }
 }

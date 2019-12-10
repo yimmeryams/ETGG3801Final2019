@@ -9,6 +9,8 @@ public class PlayerScript : MonoBehaviour
     [HideInInspector]
     public int coinCount = 0;
     //private Text coinText;
+    private AudioSource[] allAudioSources;
+
     private bool dying = false;
     public float deathTimer = 3.0f;
 
@@ -122,6 +124,12 @@ public class PlayerScript : MonoBehaviour
         if (transform.position.y <= deathHeight)
         {
             print("deathHeight");
+            // http://answers.unity.com/answers/909634/view.html https://answers.unity.com/questions/194110/how-to-stop-all-audio.html
+            allAudioSources = FindObjectsOfType(typeof(AudioSource)) as AudioSource[];
+            foreach (AudioSource audioS in allAudioSources)
+            {
+                audioS.Stop();
+            }
             PlayerDeath();
         }
 

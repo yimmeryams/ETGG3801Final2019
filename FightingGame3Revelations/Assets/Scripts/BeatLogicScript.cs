@@ -79,6 +79,8 @@ public class BeatLogicScript : MonoBehaviour
 		{
 			// Play jump beat, set the need to play jump beat to false;
 		    audio.PlayOneShot (jumpBeatSound, 1.0f);
+
+            GameObject.Find("Canvas").GetComponent<Ingame_Ui>().jump();
 			
 			//curJumpTimer = jumpBeatTime;
 			NeedsToJump = false;

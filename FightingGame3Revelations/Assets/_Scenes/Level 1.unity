@@ -333,6 +333,11 @@ PrefabInstance:
       propertyPath: beatSensitivity
       value: 0.75
       objectReference: {fileID: 0}
+    - target: {fileID: 5430339673270744403, guid: a36b586cb982904409cfd946e6f0aa78,
+        type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 304885cddad2dba4695ea0c760a05c9f, type: 3}
     - target: {fileID: 1019719964276568052, guid: a36b586cb982904409cfd946e6f0aa78,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -1198,34 +1203,12 @@ Transform:
   m_Father: {fileID: 2116393401}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &448167423 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5430339673270744407, guid: a36b586cb982904409cfd946e6f0aa78,
-    type: 3}
-  m_PrefabInstance: {fileID: 55543516}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &448167429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5430339673270744402, guid: a36b586cb982904409cfd946e6f0aa78,
     type: 3}
   m_PrefabInstance: {fileID: 55543516}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &448167430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 448167423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dd13f152ffb5004c8c14533a859cd79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isPaused: 0
-  isOver: 0
-  diamond_rate: 90
-  beatDuration: 1.5
 --- !u!1 &517168279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4147,7 +4130,7 @@ PrefabInstance:
     - target: {fileID: 1989397886265355817, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 116
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: 1989397886265355817, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
