@@ -37,18 +37,21 @@ public class Ingame_Ui : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        seconds -= Time.deltaTime;
-        if (seconds < 0)
+        if (isPaused == false)
         {
-            minutes -= 1;
-            seconds = 60;
+            seconds -= Time.deltaTime;
+            if (seconds < 0)
+            {
+                minutes -= 1;
+                seconds = 60;
+            }
+            if (minutes == -1)
+            {
+                isOver = true;
+            }
+            Text time = GameObject.Find("Timer").GetComponent<Text>();
+            time.text = minutes + ":" + seconds;
         }
-        if (minutes == -1)
-        {
-            isOver = true;
-        }
-        Text time = GameObject.Find("Timer").GetComponent<Text>();
-        time.text = minutes + ":" + seconds;
         //GameObject diamond = GameObject.Find("Diamond");
 
         //Vector3 d = new Vector3(diamond_rate,0,0);
