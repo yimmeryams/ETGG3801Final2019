@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinishPlatformScript : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class FinishPlatformScript : MonoBehaviour
 
     private Vector3 finalFlagPos = Vector3.zero;
     private bool playerFinished = false;     // true if player made it to the finish platform; false otherwise
+    private float timer = 0;
+    public float waitTime = 5.0f;
 
 
     // Start is called before the first frame update
@@ -33,6 +36,18 @@ public class FinishPlatformScript : MonoBehaviour
         }
 
         bool test = IsPlayerFinished();
+        if (test)
+        {
+            timer += Time.deltaTime;
+            if (timer >= waitTime)
+                SceneManager.LoadScene("MenuWin");
+        }
+
+
+
+
+
+        
     }
 
     private void OnTriggerEnter(Collider other)

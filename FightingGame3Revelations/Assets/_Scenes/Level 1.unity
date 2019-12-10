@@ -311,7 +311,7 @@ PrefabInstance:
     - target: {fileID: 5430339673270744403, guid: a36b586cb982904409cfd946e6f0aa78,
         type: 3}
       propertyPath: move_speed
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5430339673270744403, guid: a36b586cb982904409cfd946e6f0aa78,
         type: 3}
@@ -1225,6 +1225,7 @@ MonoBehaviour:
   isPaused: 0
   isOver: 0
   diamond_rate: 90
+  beatDuration: 1.5
 --- !u!1 &517168279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4116,17 +4117,42 @@ PrefabInstance:
     - target: {fileID: 1989397886729210762, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
       propertyPath: diamond_rate
-      value: 75
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989397886729210762, guid: 2806f38bdbb070b40a4532978630d3d1,
+        type: 3}
+      propertyPath: beatDuration
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 1989397885459853627, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 32.4
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989397885459853627, guid: 2806f38bdbb070b40a4532978630d3d1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989397885459853627, guid: 2806f38bdbb070b40a4532978630d3d1,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1989397886265355817, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 32.399994
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989397886265355817, guid: 2806f38bdbb070b40a4532978630d3d1,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 116
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989397886265355817, guid: 2806f38bdbb070b40a4532978630d3d1,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1989397884968581778, guid: 2806f38bdbb070b40a4532978630d3d1,
         type: 3}
@@ -4188,6 +4214,12 @@ PrefabInstance:
       propertyPath: m_UVRect.width
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1989397886265355816, guid: 2806f38bdbb070b40a4532978630d3d1,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1d4f1ec863ea03b489070e5d6f4b551c,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2806f38bdbb070b40a4532978630d3d1, type: 3}
 --- !u!1 &1711197070
@@ -5319,5 +5351,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 21bb4dbee5e24bc4bb13442aaf6d475d, type: 2}
+    - target: {fileID: 7773170564647056242, guid: 34c0d6ca874d0e94aa3d62449e3477c9,
+        type: 3}
+      propertyPath: waitTime
+      value: 3.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34c0d6ca874d0e94aa3d62449e3477c9, type: 3}

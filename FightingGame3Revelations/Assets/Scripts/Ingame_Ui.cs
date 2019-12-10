@@ -11,9 +11,23 @@ public class Ingame_Ui : MonoBehaviour
     private float minutes = 30;
     private float seconds = 59.9999f;
     public int diamond_rate = 50;
+    private float diamondStartX;
+    private float diamondStartY;
+    private float barLeft;
+    private float barRight;
+    private float barSize;
+    private float magicDiamondNumber;
+    public float beatDuration = 1.75f;   // could grab this from Player->BeatLogicScript but nah I'm too lazy ~JDP
     // Start is called before the first frame update
     void Start()
     {
+        // saves starting position of diamond, place it on the orange circle ~JDP
+        diamondStartX = GetComponent<Canvas>().transform.GetChild(3).transform.position.x;
+        diamondStartY = GetComponent<Canvas>().transform.GetChild(3).transform.position.y;
+        // saves the width, left bound pos, and right bound pos of the beat bar ~JDP
+        barSize = GetComponent<Canvas>().transform.GetChild(2).transform.GetComponent<RectTransform>().sizeDelta.x;
+        barLeft = GetComponent<Canvas>().transform.GetChild(2).transform.position.x - barSize / 2.0f;
+        barRight = GetComponent<Canvas>().transform.GetChild(2).transform.position.x + barSize / 2.0f;
     }
 
     // Update is called once per frame
@@ -32,12 +46,17 @@ public class Ingame_Ui : MonoBehaviour
         Text time = GameObject.Find("Timer").GetComponent<Text>();
         time.text = minutes + ":" + seconds;
         GameObject diamond = GameObject.Find("Diamond");
-        Vector3 d = new Vector3(diamond_rate,0,0);
-        Vector3 start = new Vector3(249, 0.0f, 0.0f);
-        diamond.transform.position += (d*Time.deltaTime);
-        if (diamond.transform.position.x >= 580.0f)
+
+        //Vector3 d = new Vector3(diamond_rate,0,0);
+        //Vector3 start = new Vector3(249, 0.0f, 0.0f);
+
+        // calculating how far to move the Diamond  ~JDP
+        float percentage = Time.deltaTime / beatDuration;
+        magicDiamondNumber = percentage * barSize;
+        diamond.transform.position = new Vector3(diamond.transform.position.x + magicDiamondNumber, diamond.transform.position.y, diamond.transform.position.z);
+        if (diamond.transform.position.x >= barRight)
         {
-            diamond.transform.position -= start;
+            diamond.transform.position = new Vector3(diamond.transform.position.x - barSize, diamond.transform.position.y, diamond.transform.position.z);
         }
         if (isPaused)
         {
